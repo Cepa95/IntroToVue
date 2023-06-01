@@ -20,10 +20,14 @@
       <h2>Events in Action</h2>
       <!-- <button v-on:click="counter++">Add</button>
       <button v-on:click="counter--">Reduce</button> -->
-      <button v-on:click="add()">Add</button>
+      <button v-on:click="add(5)">Add 5</button>
       <!-- <button v-on:click="reduce">Reduce</button> -->
-      <button v-on:click="reduce()">Reduce</button>
+      <button v-on:click="reduce(5)">Reduce 5</button>
       <p>Result: {{ counter }}</p>
+      <!-- da je bio setName() ne bi radilo zbog eventa-->
+      <input type="text" v-on:input="setName">
+      <p> Your name: {{ name }}</p>
+
     </section>
   </body>
 </html>
