@@ -3,15 +3,41 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: "",
+      fullName: "",
+      lastName: "",
     };
+  },
+  watch: {
+    // name(value) {
+    //   if (value === "") {
+    //     this.fullName = "";
+    //   } else {
+    //     this.fullName = value + " " + this.lastName;
+    //   }
+    // },
+    // lastName(value) {
+    //   if (value === "") {
+    //     this.fullName = "";
+    //   } else {
+    //     this.fullName = this.name + " " + value;
+    //   }
+    // },
+    counter(value) {
+      if (value > 50) {
+        const that = this;
+        setTimeout(() => {
+          that.counter = 0;
+        }, 2000);
+      }
+    },
   },
   //nisu kao funkcije pri 'pozivu' bez ()
   computed: {
     full() {
-      if (this.name === "") {
+      if (this.name === "" || this.lastName === "") {
         return "";
       }
-      return this.name + " " + "last";
+      return this.name + " " + this.lastName;
     },
   },
 
