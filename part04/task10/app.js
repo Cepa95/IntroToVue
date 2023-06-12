@@ -41,6 +41,7 @@ proxy.message = "hello!!!!!!";
 console.log(proxy.longMessage)
 
 const app2 = Vue.createApp({
+  template: ` <p>{{ favouriteMeal }}</p>`,
   data() {
     return {
       favouriteMeal: 'Pizza',
