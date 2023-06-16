@@ -12,7 +12,6 @@
         name="Julie Lorenz"
         phone-number="1111 1118 991"
         email-address="julie@localhost.com"
-        is-favorite="0"
       ></friend-contact>
     </ul>
   </section>
