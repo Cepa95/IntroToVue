@@ -6,11 +6,13 @@
         name="Manuel Lorenz"
         phone-number="01234 5678 991"
         email-address="manuel@localhost1.com"
+        is-favorite="1"
       ></friend-contact>
       <friend-contact
         name="Julie Lorenz"
         phone-number="1111 1118 991"
         email-address="julie@localhost.com"
+        is-favorite="0"
       ></friend-contact>
     </ul>
   </section>
