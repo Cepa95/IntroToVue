@@ -2,7 +2,7 @@
   <section>
     <header><h1>My friends</h1></header>
     <ul>
-      <new-friend></new-friend>
+      <new-friend @add-contact="addContact"></new-friend>
       <friend-contact
         v-for="friend in friends"
         :key="friend.id"
@@ -20,7 +20,7 @@
 
 <script>
 import FriendContact from "./components/FriendContact.vue";
-import NewFriend from './components/newFriend.vue';
+import NewFriend from "./components/newFriend.vue";
 export default {
   components: { FriendContact, NewFriend },
   data() {
@@ -51,6 +51,16 @@ export default {
       );
       // console.log(friendId);
       identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+    },
+    addContact(name, phone, email) {
+      const newFriendContact = {
+        id: new Date().toISOString(),
+        name: name,
+        phone: phone,
+        email: email,
+        isFavorite: false,
+      };
+      this.friends.push(newFriendContact);
     },
   },
 };
@@ -138,5 +148,4 @@ header {
 #app form div {
   margin: 1rem 0;
 }
-
 </style>
