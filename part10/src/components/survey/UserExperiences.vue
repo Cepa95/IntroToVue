@@ -21,7 +21,7 @@
 import SurveyResult from './SurveyResult.vue';
 
 export default {
-  props: ['results'],
+  // props: ['results'],
   components: {
     SurveyResult,
   },
