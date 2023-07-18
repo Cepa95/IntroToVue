@@ -16,19 +16,51 @@
 import UserItem from '../users/UserItem.vue';
 
 export default {
+  inject: ['users', 'teams'],
   components: {
-    UserItem
+    UserItem,
   },
   data() {
     return {
-      teamName: 'Test',
-      members: [
-        { id: 'u1', fullName: 'Max Schwarz', role: 'Engineer' },
-        { id: 'u2', fullName: 'Max Schwarz', role: 'Engineer' },
-      ],
+      teamName: '',
+      members: [],
     };
   },
-};
+  created() {
+    const teamId = this.$route.params.TeamId; // TeamId mora biti istovjetan sa routom u main.jsu
+    const selectedTeam = this.teams.find((team) => team.id === teamId);
+    const members = selectedTeam.members;
+    const selectedMembers = [];
+    for (const member of members) {
+      const selectedUser = this.users.find ( user => user.id === member)
+      selectedMembers.push(selectedUser);
+    }
+    this.members = selectedMembers
+    this.teamName = selectedTeam.name
+    // console.log(this.$route);
+  },
+
+//  created() {
+//     const teamId = this.$route.params.TeamId;
+//     const selectedTeam = this.teams.find((team) => team.id === teamId);
+//     if (selectedTeam) {
+//       const members = selectedTeam.members;
+//       const selectedMembers = [];
+//       for (const memberId of members) {
+//         const selectedUser = this.users.find((user) => user.id === memberId);
+//         if (selectedUser) {
+//           selectedMembers.push(selectedUser);
+//         }
+//       }
+//       this.members = selectedMembers;
+//       this.teamName = selectedTeam.name;
+//     } else {
+//       console.error(`Team with ID ${teamId} not found.`);
+//     }
+//   },
+
+ };
+
 </script>
 
 <style scoped>
