@@ -9,12 +9,12 @@
 <script>
 export default {
   props: ['id', 'name', 'memberCount'],
-  computed:{
-    teamMembersLink(){
-      return '/teams/' + this.id
-    }
-
-  }
+  computed: {
+    teamMembersLink() {
+      // return '/teams/' + this.id
+      return { name: 'team-members', params: {teamId: this.id}};
+    },
+  },
 };
 </script>
 

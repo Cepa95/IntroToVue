@@ -14,11 +14,12 @@ const router = createRouter({
     // { path: '/teams', component: TeamsList, alias: '/' }, // sa redirectom se minja url sa aliasom ne
     // { path: '/teams', component: TeamsList, alias: '/' },
     {
+      name: 'teams',
       path: '/teams',
       component: TeamsList,
       children: [
         //jer je child ne triba /teams
-        { path: ':teamId', component: TeamMembers, props: true },
+        { name: 'team-members', path: ':teamId', component: TeamMembers, props: true },
       ]
     },
     { path: '/users', component: UsersList },
