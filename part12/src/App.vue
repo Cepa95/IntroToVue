@@ -9,10 +9,12 @@
     </transition>
     <button @click="toggleParagraph">Toggle paragraph</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
+
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
   </base-modal>
+
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -95,7 +97,7 @@ button:active {
 .para-enter-from {
   /* opacity: 0;
   transform: translateY(-30px); */
-} 
+}
 
 .para-enter-active {
   animation: slide-scale 0.5s ease-out;
@@ -119,9 +121,6 @@ button:active {
   /* opacity: 0;
   transform: translateY(30px); */
 }
-
-
-
 
 @keyframes slide-scale {
   0% {
