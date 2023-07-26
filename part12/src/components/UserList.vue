@@ -47,7 +47,7 @@ li {
 }
 
 .user-list-enter-active {
-  transition: all 1s ease-out;
+  transition: all 0.8s ease-out;
 }
 
 .user-list-enter-to {
@@ -61,10 +61,15 @@ li {
 }
 
 .user-list-leave-active {
-  transition: all 1s ease-in;
+  transition: all 0.8s ease-in;
+  position: absolute;
 }
 .user-list-leave-to {
   opacity: 1;
   transform: translateX(30px);
+}
+
+.user-list-move {
+    transition: transform 2.5s ease-out
 }
 </style>
