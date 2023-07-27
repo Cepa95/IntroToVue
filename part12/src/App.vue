@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="container">
     <user-list></user-list>
   </div>
@@ -36,14 +36,21 @@
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
-</template>  
+</template>   -->
+<template>
+  <router-view v-slot="slotProps">
+    <transition name="fade-button" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
+</template>
 
 <script>
-import UserList from "./components/UserList.vue"
+// import UserList from "./components/UserList.vue"
 export default {
-  components: {
-      UserList,
-    },
+  // components: {
+  //     UserList,
+  //   },
   data() {
     return {
       dialogIsVisible: false,
@@ -51,16 +58,16 @@ export default {
       paraIsVisible: false,
       usersAreVisible: false,
       enterInterval: null,
-      leaveInterval: null
+      leaveInterval: null,
     };
   },
   methods: {
-    enterCancelled(el){
-      console.log(el)
+    enterCancelled(el) {
+      console.log(el);
       clearInterval(this.enterInterval);
     },
-    leaveCancelled(el){
-      console.log(el)
+    leaveCancelled(el) {
+      console.log(el);
       clearInterval(this.leaveInterval);
     },
     beforeEnter(el) {
@@ -71,15 +78,15 @@ export default {
     enter(el, done) {
       console.log('enter');
       console.log(el);
-      let round = 1
+      let round = 1;
       this.enterInterval = setInterval(() => {
         el.style.opacity = round * 0.01;
         round++;
-        if ( round > 100) {
-          clearInterval(this.enterInterval)
+        if (round > 100) {
+          clearInterval(this.enterInterval);
           done();
         }
-      },20)
+      }, 20);
     },
     afterEnter(el) {
       console.log('afterEnter');
@@ -93,15 +100,15 @@ export default {
     leave(el, done) {
       console.log('leave');
       console.log(el);
-      let round = 1
+      let round = 1;
       this.leaveInterval = setInterval(() => {
         el.style.opacity = 1 - round * 0.01;
         round++;
-        if ( round > 100) {
-          clearInterval(this.leaveInterval)
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
           done();
         }
-      },20)
+      }, 20);
     },
     afterLeave(el) {
       console.log('afterLeave');
@@ -181,7 +188,6 @@ button:active {
   /* opacity: 0;
   transform: translateY(-30px); } */
 
-
 .fade-button-enter-from,
 .fade-button-leave-to {
   opacity: 0;
@@ -197,6 +203,20 @@ button:active {
   opacity: 1;
 }
 
+.route-enter-from {
+
+}
+.route-enter-active {
+  animation: slide-scale 0.4s ease-out;
+}
+.route-enter-to
+ {
+  
+}
+
+.route-leave-active {
+  animation: slide-scale 0.4s ease-in;
+}
 @keyframes slide-scale {
   0% {
     transform: translateX(0) scale(1);
