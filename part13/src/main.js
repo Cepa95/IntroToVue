@@ -10,28 +10,38 @@ const store = createStore({
     };
   },
   mutations: {
-    increment(state){
-        state.counter++;
+    increment(state) {
+      state.counter++;
     },
-    increase(state, payload){
-        state.counter = state.counter + payload.value;
+    increase(state, payload) {
+      state.counter = state.counter + payload.value;
+    },
+  },
+  actions: {
+    increment(context) {
+      setTimeout(function () {
+        context.commit('increment');
+      }, 2222);
+    },
+    increase(context, payload) {
+      context.commit('increase', payload);
+
     }
   },
   getters: {
-    finalCounter(state){
-      return state.counter * 3
-    }, 
-    normalizedCounter(_, getters){
-      const finalCounter=  getters.finalCounter
+    finalCounter(state) {
+      return state.counter * 3;
+    },
+    normalizedCounter(_, getters) {
+      const finalCounter = getters.finalCounter;
       if (finalCounter < 0) {
         return 0;
-      }
-      else if (finalCounter > 100){
+      } else if (finalCounter > 100) {
         return 100;
       }
       return finalCounter;
     },
-  }
+  },
 });
 
 const app = createApp(App);
