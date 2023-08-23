@@ -8,8 +8,8 @@
 
 <script>
 // import { ref } from 'vue';
-import { reactive } from 'vue';
-
+// import { ref,reactive,isReactive, isRef, toRefs } from 'vue';
+import { ref,reactive,isReactive, isRef } from 'vue';
 export default {
   // data() {
   //   return {
@@ -17,20 +17,25 @@ export default {
   //   };
   // },
   setup() {
-    /* const uName = ref('Maximilian');
-     const uAge = ref(31)*/
+    // const uName = ref('Maximilian');
+    const uAge = ref(31)
     const user = reactive({
       name: 'Maximilian',
       age: 31
     })
+    console.log(isRef(uAge.value))
+    console.log(isReactive(user), user.age)
     setTimeout(() =>{
       // uName.value ="Max"
       // uAge.value = 32
       user.name = 'Max',
       user.age = 32
     }, 2000)
+
+    // const userRefs = toRefs(user);
     // return {userName: user.value.name, age: user.value.age, user: user};
-    return {user: user};
+    // return {user: user, userName: userRefs.name, age: userRefs.age};
+    return {user:user}
   },
 };
 </script>
