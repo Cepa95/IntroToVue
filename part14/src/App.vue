@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { ref,computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 // import { ref,reactive,isReactive, isRef, toRefs } from 'vue';
 // import { ref, reactive, isReactive, isRef } from 'vue';
 export default {
@@ -53,6 +53,18 @@ export default {
       uAge.value = 33;
     }
 
+    const uName = computed(function () {
+      return firstName.value + ' ' + lastName.value;
+    });
+    // watch(uAge, function(newValue, oldValue){
+    //   console.log(oldValue, newValue)
+    // });
+
+    watch([uAge, uName], function (newValue, oldValue) {
+      console.log(oldValue[0], newValue[0]);
+      console.log(oldValue[1], newValue[1]);
+    });
+
     // function setFirstName(event) {
     //   firstName.value = event.target.value;
     // }
@@ -60,16 +72,13 @@ export default {
     //   lastName.value = event.target.value;
     // }
 
-   const uName = computed(function(){
-      return firstName.value + ' ' + lastName.value
-    })
+
     return {
       userName: uName,
       age: uAge,
       setAge: setNewAge,
       firstName,
-      lastName
-    
+      lastName,
     };
   },
 };
