@@ -10,17 +10,19 @@
 
 
 <script>
-import { computed } from 'vue';
+import { computed, inject } from 'vue';
 
 export default {
-  props: ['firstName', 'lastName', 'age'],
+  props: ['firstName', 'lastName'],
   setup(props, context) {
     const uName = computed(function () {
       return props.firstName + ' ' + props.lastName;
     });
     // context.emit();
+    console.log(context)
+    const age = inject('userAge')
 
-    return { userName: uName };
+    return { userName: uName, age: age};
   },
 };
 </script>

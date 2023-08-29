@@ -4,7 +4,7 @@
     <h3>{{ user.age }}</h3> -->
     <!-- <h2>{{ userName }}</h2>
     <h3>{{ age }}</h3> -->
-    <user-data :first-name="firstName" :last-name="lastName" :age="age"></user-data>
+    <user-data :first-name="firstName" :last-name="lastName"></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="FirstName" v-model="firstName" />
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue';
+import { ref, computed, watch, provide } from 'vue';
 import UserData from './components/UserData.vue'
 // import { ref,reactive,isReactive, isRef, toRefs } from 'vue';
 // import { ref, reactive, isReactive, isRef } from 'vue';
@@ -59,6 +59,9 @@ export default {
     function setNewAge() {
       uAge.value = 33;
     }
+
+    provide('userAge', uAge)
+    
     function setLastName(){
       lastName.value = lastNameInput.value.value
     }
