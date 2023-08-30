@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import {ref} from 'vue'
+
 import USER_DATA from './dummy-data.js';
 
 import UserList from './components/users/UserList.vue';
@@ -16,16 +18,17 @@ export default {
     UserList,
     ProjectsList,
   },
-  data() {
-    return {
-      selectedUser: null,
-      activeUsers: USER_DATA,
-    };
-  },
-  methods: {
-    selectUser(uid) {
-      this.selectedUser = this.activeUsers.find((usr) => usr.id === uid);
-    },
+  setup(){
+    const selectedUser = ref(null);
+    const activeUsers = USER_DATA
+
+
+    function selectUser(uId){
+      selectedUser.value = activeUsers.find((usr => usr.id == uId))
+    }
+
+    return {selectedUser, activeUsers, selectUser}
+
   },
 };
 </script>
